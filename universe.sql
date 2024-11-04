@@ -16,6 +16,29 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+DROP DATABASE universe;
+--
+-- Name: universe; Type: DATABASE; Schema: -; Owner: freecodecamp
+--
+
+CREATE DATABASE universe WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C.UTF-8' LC_CTYPE = 'C.UTF-8';
+
+
+ALTER DATABASE universe OWNER TO freecodecamp;
+
+\connect universe
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -252,87 +275,77 @@ ALTER TABLE ONLY public.star ALTER COLUMN star_id SET DEFAULT nextval('public.st
 -- Data for Name: asteroid_belt; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-COPY public.asteroid_belt (asteroid_belt_id, name, description, distance_from_earth, age_in_millions_of_years, star_id, planet_id) FROM stdin;
-1	Main Belt	Asteroid belt located between Mars and Jupiter	2.7	4600	1	\N
-2	Kuiper Belt	A region of icy bodies beyond Neptune	50	4600	1	\N
-3	Oort Cloud	A theoretical cloud of icy objects at the edge of the solar system	100000	4600	1	\N
-\.
+INSERT INTO public.asteroid_belt VALUES (1, 'Main Belt', 'Asteroid belt located between Mars and Jupiter', 2.7, 4600, 1, NULL);
+INSERT INTO public.asteroid_belt VALUES (2, 'Kuiper Belt', 'A region of icy bodies beyond Neptune', 50, 4600, 1, NULL);
+INSERT INTO public.asteroid_belt VALUES (3, 'Oort Cloud', 'A theoretical cloud of icy objects at the edge of the solar system', 100000, 4600, 1, NULL);
 
 
 --
 -- Data for Name: galaxy; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-COPY public.galaxy (galaxy_id, name, galaxy_type, age_in_millions_of_years, distance_from_earth, description) FROM stdin;
-1	Milky Way	Spiral	13600	0	Our home galaxy
-2	Andromeda	Spiral	10000	2500	The nearest major galaxy
-3	Triangulum	Spiral	8000	3000	A member of the local group
-4	Whirlpool	Spiral	10000	23000	Known for its distinctive spiral structure
-5	Sombrero	Elliptical	13000	29000	Famous for its bright nucleus
-6	Black Eye	Spiral	8900	17000	Named for a dark dust band across its nucleus
-\.
+INSERT INTO public.galaxy VALUES (1, 'Milky Way', 'Spiral', 13600, 0, 'Our home galaxy');
+INSERT INTO public.galaxy VALUES (2, 'Andromeda', 'Spiral', 10000, 2500, 'The nearest major galaxy');
+INSERT INTO public.galaxy VALUES (3, 'Triangulum', 'Spiral', 8000, 3000, 'A member of the local group');
+INSERT INTO public.galaxy VALUES (4, 'Whirlpool', 'Spiral', 10000, 23000, 'Known for its distinctive spiral structure');
+INSERT INTO public.galaxy VALUES (5, 'Sombrero', 'Elliptical', 13000, 29000, 'Famous for its bright nucleus');
+INSERT INTO public.galaxy VALUES (6, 'Black Eye', 'Spiral', 8900, 17000, 'Named for a dark dust band across its nucleus');
 
 
 --
 -- Data for Name: moon; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-COPY public.moon (moon_id, name, is_spherical, age_in_millions_of_years, planet_id, description) FROM stdin;
-1	Moon	t	4500	1	Earth’s only natural satellite
-2	Phobos	f	4500	2	One of Mars’ two moons
-3	Deimos	f	4500	2	One of Mars’ two moons
-4	Europa	t	4500	3	An icy moon of Jupiter
-5	Ganymede	t	4500	3	The largest moon in the solar system
-6	Io	t	4500	3	Jupiter’s volcanic moon
-7	Callisto	t	4500	3	A heavily cratered moon of Jupiter
-8	Titan	t	4500	4	The largest moon of Saturn
-9	Enceladus	t	4500	4	Saturn’s icy moon with geysers
-10	Mimas	t	4500	4	A moon with a large impact crater
-11	Triton	t	4500	5	The largest moon of Neptune
-12	Charon	t	4500	6	The largest moon of Pluto
-13	Nix	f	4500	6	A small moon of Pluto
-14	Hydra	f	4500	6	A small moon of Pluto
-15	Umbriel	t	4500	6	A dark moon of Uranus
-16	Ariel	t	4500	6	One of Uranus’ larger moons
-17	Miranda	t	4500	6	A small moon with a unique landscape
-18	Oberon	t	4500	6	An outer moon of Uranus
-19	Titania	t	4500	6	The largest moon of Uranus
-20	Rhea	t	4500	4	An icy moon of Saturn
-\.
+INSERT INTO public.moon VALUES (1, 'Moon', true, 4500, 1, 'Earth’s only natural satellite');
+INSERT INTO public.moon VALUES (2, 'Phobos', false, 4500, 2, 'One of Mars’ two moons');
+INSERT INTO public.moon VALUES (3, 'Deimos', false, 4500, 2, 'One of Mars’ two moons');
+INSERT INTO public.moon VALUES (4, 'Europa', true, 4500, 3, 'An icy moon of Jupiter');
+INSERT INTO public.moon VALUES (5, 'Ganymede', true, 4500, 3, 'The largest moon in the solar system');
+INSERT INTO public.moon VALUES (6, 'Io', true, 4500, 3, 'Jupiter’s volcanic moon');
+INSERT INTO public.moon VALUES (7, 'Callisto', true, 4500, 3, 'A heavily cratered moon of Jupiter');
+INSERT INTO public.moon VALUES (8, 'Titan', true, 4500, 4, 'The largest moon of Saturn');
+INSERT INTO public.moon VALUES (9, 'Enceladus', true, 4500, 4, 'Saturn’s icy moon with geysers');
+INSERT INTO public.moon VALUES (10, 'Mimas', true, 4500, 4, 'A moon with a large impact crater');
+INSERT INTO public.moon VALUES (11, 'Triton', true, 4500, 5, 'The largest moon of Neptune');
+INSERT INTO public.moon VALUES (12, 'Charon', true, 4500, 6, 'The largest moon of Pluto');
+INSERT INTO public.moon VALUES (13, 'Nix', false, 4500, 6, 'A small moon of Pluto');
+INSERT INTO public.moon VALUES (14, 'Hydra', false, 4500, 6, 'A small moon of Pluto');
+INSERT INTO public.moon VALUES (15, 'Umbriel', true, 4500, 6, 'A dark moon of Uranus');
+INSERT INTO public.moon VALUES (16, 'Ariel', true, 4500, 6, 'One of Uranus’ larger moons');
+INSERT INTO public.moon VALUES (17, 'Miranda', true, 4500, 6, 'A small moon with a unique landscape');
+INSERT INTO public.moon VALUES (18, 'Oberon', true, 4500, 6, 'An outer moon of Uranus');
+INSERT INTO public.moon VALUES (19, 'Titania', true, 4500, 6, 'The largest moon of Uranus');
+INSERT INTO public.moon VALUES (20, 'Rhea', true, 4500, 4, 'An icy moon of Saturn');
 
 
 --
 -- Data for Name: planet; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-COPY public.planet (planet_id, name, planet_type, has_life, is_spherical, star_id, description) FROM stdin;
-1	Earth	Terrestrial	t	t	1	The only known planet with life
-2	Mars	Terrestrial	f	t	1	The red planet
-3	Jupiter	Gas Giant	f	t	1	The largest planet in the Solar System
-4	Saturn	Gas Giant	f	t	1	Known for its prominent ring system
-5	Neptune	Ice Giant	f	t	1	The farthest known planet in our solar system
-6	Alpha Centauri Bb	Exoplanet	f	t	2	A planet orbiting Alpha Centauri B
-7	Proxima b	Exoplanet	f	t	2	Potentially habitable exoplanet around Proxima Centauri
-8	Kepler-22b	Exoplanet	f	t	3	Located in the habitable zone of its star
-9	Kepler-69c	Exoplanet	f	t	3	Similar in size to Earth
-10	Gliese 581g	Exoplanet	f	t	4	In the habitable zone of Gliese 581
-11	HD 209458 b	Gas Giant	f	t	4	One of the first exoplanets discovered
-12	WASP-12b	Gas Giant	f	t	5	One of the hottest exoplanets known
-\.
+INSERT INTO public.planet VALUES (1, 'Earth', 'Terrestrial', true, true, 1, 'The only known planet with life');
+INSERT INTO public.planet VALUES (2, 'Mars', 'Terrestrial', false, true, 1, 'The red planet');
+INSERT INTO public.planet VALUES (3, 'Jupiter', 'Gas Giant', false, true, 1, 'The largest planet in the Solar System');
+INSERT INTO public.planet VALUES (4, 'Saturn', 'Gas Giant', false, true, 1, 'Known for its prominent ring system');
+INSERT INTO public.planet VALUES (5, 'Neptune', 'Ice Giant', false, true, 1, 'The farthest known planet in our solar system');
+INSERT INTO public.planet VALUES (6, 'Alpha Centauri Bb', 'Exoplanet', false, true, 2, 'A planet orbiting Alpha Centauri B');
+INSERT INTO public.planet VALUES (7, 'Proxima b', 'Exoplanet', false, true, 2, 'Potentially habitable exoplanet around Proxima Centauri');
+INSERT INTO public.planet VALUES (8, 'Kepler-22b', 'Exoplanet', false, true, 3, 'Located in the habitable zone of its star');
+INSERT INTO public.planet VALUES (9, 'Kepler-69c', 'Exoplanet', false, true, 3, 'Similar in size to Earth');
+INSERT INTO public.planet VALUES (10, 'Gliese 581g', 'Exoplanet', false, true, 4, 'In the habitable zone of Gliese 581');
+INSERT INTO public.planet VALUES (11, 'HD 209458 b', 'Gas Giant', false, true, 4, 'One of the first exoplanets discovered');
+INSERT INTO public.planet VALUES (12, 'WASP-12b', 'Gas Giant', false, true, 5, 'One of the hottest exoplanets known');
 
 
 --
 -- Data for Name: star; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-COPY public.star (star_id, name, star_type, age_in_millions_of_years, distance_from_earth, galaxy_id, description) FROM stdin;
-1	Sun	G-Type	4600	0	1	The star at the center of our solar system
-2	Proxima Centauri	M-Type	5000	4.24	1	Closest star to the Sun
-3	Betelgeuse	Red Supergiant	8000	642.5	2	A red supergiant star
-4	Sirius	A-Type	300	8.6	1	The brightest star in the night sky
-5	Vega	A-Type	455	25	1	A bright star in the constellation Lyra
-6	Rigel	Blue Supergiant	10000	863	2	One of the most luminous stars in the Milky Way
-\.
+INSERT INTO public.star VALUES (1, 'Sun', 'G-Type', 4600, 0, 1, 'The star at the center of our solar system');
+INSERT INTO public.star VALUES (2, 'Proxima Centauri', 'M-Type', 5000, 4.24, 1, 'Closest star to the Sun');
+INSERT INTO public.star VALUES (3, 'Betelgeuse', 'Red Supergiant', 8000, 642.5, 2, 'A red supergiant star');
+INSERT INTO public.star VALUES (4, 'Sirius', 'A-Type', 300, 8.6, 1, 'The brightest star in the night sky');
+INSERT INTO public.star VALUES (5, 'Vega', 'A-Type', 455, 25, 1, 'A bright star in the constellation Lyra');
+INSERT INTO public.star VALUES (6, 'Rigel', 'Blue Supergiant', 10000, 863, 2, 'One of the most luminous stars in the Milky Way');
 
 
 --
